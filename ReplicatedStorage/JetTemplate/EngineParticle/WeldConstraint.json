@@ -1,0 +1,1 @@
+{"attributes":[],"className":"WeldConstraint","properties":{"Part0":{"path":"ReplicatedStorage.JetTemplate.Body","_t":"Ref","name":"Body"},"Part1":{"path":"ReplicatedStorage.JetTemplate.EngineParticle","_t":"Ref","name":"EngineParticle"},"Enabled":true}}

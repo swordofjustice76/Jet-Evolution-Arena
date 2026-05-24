@@ -1,0 +1,163 @@
+local AbilityDefs = {
+	AfterburnerSurge = {
+		name = "Afterburner Surge",
+		id = "AfterburnerSurge",
+		charges = 5,
+		cooldown = 8,
+		duration = 3,
+		rankRequired = "Iron3",
+		medalCost = 200,
+		robuxCost = 49,
+		description = "3s speed burst + 50% damage boost",
+		effect = {speedMultiplier = 2.0, damageMultiplier = 1.5},
+	},
+	StrafeDash = {
+		name = "Strafe Dash",
+		id = "StrafeDash",
+		charges = 4,
+		cooldown = 6,
+		duration = 0.2,
+		rankRequired = "Iron5",
+		medalCost = 300,
+		robuxCost = 59,
+		description = "Instant lateral dodge teleport",
+		effect = {dashDistance = 40},
+	},
+	MicroShield = {
+		name = "Micro Shield",
+		id = "MicroShield",
+		charges = 3,
+		cooldown = 15,
+		duration = 2,
+		rankRequired = "Bronze3",
+		medalCost = 500,
+		robuxCost = 79,
+		description = "2s damage immunity bubble",
+		effect = {shieldDuration = 2},
+	},
+	RepairPulse = {
+		name = "Repair Pulse",
+		id = "RepairPulse",
+		charges = 3,
+		cooldown = 20,
+		duration = 3,
+		rankRequired = "Bronze5",
+		medalCost = 600,
+		robuxCost = 89,
+		description = "Heal 30% HP over 3s",
+		effect = {healPercent = 0.3, healDuration = 3},
+	},
+	MissileSwarm = {
+		name = "Missile Swarm",
+		id = "MissileSwarm",
+		charges = 3,
+		cooldown = 25,
+		duration = 1,
+		rankRequired = "Silver",
+		medalCost = 1000,
+		robuxCost = 129,
+		description = "Fire 8 homing missiles",
+		effect = {missileCount = 8, missileDamage = 15, homingStrength = 0.5},
+	},
+	EMPBurst = {
+		name = "EMP Burst",
+		id = "EMPBurst",
+		charges = 2,
+		cooldown = 30,
+		duration = 3,
+		rankRequired = "Silver",
+		medalCost = 1200,
+		robuxCost = 149,
+		description = "Disable nearby enemies' weapons 3s",
+		effect = {radius = 80, disableDuration = 3},
+	},
+	StealthVeil = {
+		name = "Stealth Veil",
+		id = "StealthVeil",
+		charges = 2,
+		cooldown = 35,
+		duration = 5,
+		rankRequired = "Gold",
+		medalCost = 2000,
+		robuxCost = 199,
+		description = "5s invisibility",
+		effect = {stealthDuration = 5},
+	},
+	RailSnipe = {
+		name = "Rail Snipe",
+		id = "RailSnipe",
+		charges = 2,
+		cooldown = 20,
+		duration = 0.1,
+		rankRequired = "Gold",
+		medalCost = 2500,
+		robuxCost = 229,
+		description = "Instant high-damage long-range shot",
+		effect = {damage = 80, range = 500, projectileSpeed = 600},
+	},
+	DroneEscort = {
+		name = "Drone Escort",
+		id = "DroneEscort",
+		charges = 2,
+		cooldown = 40,
+		duration = 15,
+		rankRequired = "Platinum",
+		medalCost = 4000,
+		robuxCost = 299,
+		description = "2 AI drones that shoot nearby enemies 15s",
+		effect = {droneCount = 2, droneDamage = 8, droneDuration = 15},
+	},
+	GravitySlam = {
+		name = "Gravity Slam",
+		id = "GravitySlam",
+		charges = 1,
+		cooldown = 60,
+		duration = 0.5,
+		rankRequired = "Emerald",
+		medalCost = 6000,
+		robuxCost = 399,
+		description = "Pull nearby enemies toward you + damage",
+		effect = {radius = 120, pullForce = 200, damage = 40},
+	},
+	PhoenixRevival = {
+		name = "Phoenix Revival",
+		id = "PhoenixRevival",
+		charges = 1,
+		cooldown = 0,
+		duration = 0,
+		rankRequired = "Diamond",
+		medalCost = 10000,
+		robuxCost = 599,
+		description = "Auto-revive on death with 50% HP",
+		effect = {reviveHP = 0.5},
+	},
+	TitanOvercharge = {
+		name = "Titan Overcharge",
+		id = "TitanOvercharge",
+		charges = 1,
+		cooldown = 0,
+		duration = 10,
+		rankRequired = "Diamond",
+		medalCost = 12000,
+		robuxCost = 799,
+		description = "10s massive stat boost (3x damage, 2x speed)",
+		effect = {damageMultiplier = 3.0, speedMultiplier = 2.0, duration = 10},
+	},
+}
+
+function AbilityDefs.GetByID(id)
+	return AbilityDefs[id]
+end
+
+function AbilityDefs.GetAll()
+	local list = {}
+	for id, def in pairs(AbilityDefs) do
+		if type(def) == "table" and def.name then
+			table.insert(list, def)
+		end
+	end
+	table.sort(list, function(a, b) return a.medalCost < b.medalCost end)
+	return list
+end
+
+return AbilityDefs
